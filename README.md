@@ -12,6 +12,10 @@ logic requires date manipulation then it would be better to use LocalDateTime.
 In future DTOs and mappers could be introduced but for now there is no need because it increases 
 complexity. Food Truck entity is serialized to JSON as-is.
 
+Endpoint `close-to-me` requires user coordinates and then calculates and finds closest food trucks.
+Approximately distance of one block in latitude would be ±0.002 and in longtitude ±0.004.
+Some sofisticated math function could be better but this is good enough.
+
 ## Test, build and run
 Maven automation tool is used for testing the API and building .jar file.
 To test, build and run user should be positioned inside top level project directory.
