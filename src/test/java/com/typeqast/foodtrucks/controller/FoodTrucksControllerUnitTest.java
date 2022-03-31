@@ -147,8 +147,8 @@ public class FoodTrucksControllerUnitTest {
 	void findAllCloseToMe_ShouldReturnAllFoodTrucksCloseToMe() {
 		// given
 		BigDecimal latitude = new BigDecimal(37.785);
-		BigDecimal longtitude = new BigDecimal(-122.435);
-		List<FoodTruck> list = new ArrayList<FoodTruck>();
+		BigDecimal longitude = new BigDecimal(-122.435);
+		List<FoodTruck> list = new ArrayList<>();
 		list.add(new FoodTruck(1L, 
 				"San Pancho's Tacos", 
 				"Truck", 
@@ -173,8 +173,8 @@ public class FoodTrucksControllerUnitTest {
 				"-122.431"));
 		
 		//when
-		when(service.findAllCloseToMe(latitude, longtitude)).thenReturn(list);
-		ResponseEntity<List<FoodTruck>> response = controller.findAllCloseToMe(latitude, longtitude);
+		when(service.findAllCloseToMe(latitude, longitude)).thenReturn(list);
+		ResponseEntity<List<FoodTruck>> response = controller.findAllCloseToMe(latitude, longitude);
 		List<FoodTruck> foodTrucks = response.getBody();
 		
 		// then
@@ -184,19 +184,19 @@ public class FoodTrucksControllerUnitTest {
 		assertThat(foodTrucks).isNotNull();
 		assertThat(foodTrucks).isNotEmpty();
 		assertThat(foodTrucks.size()).isEqualTo(3);
-		verify(service).findAllCloseToMe(latitude, longtitude);
+		verify(service).findAllCloseToMe(latitude, longitude);
 	}
 	
 	@Test
 	void findAllCloseToMe_ShouldReturnEmptyList() {
 		// given
 		BigDecimal latitude = new BigDecimal(40.785);
-		BigDecimal longtitude = new BigDecimal(-122.435);
-		List<FoodTruck> list = new ArrayList<FoodTruck>();
+		BigDecimal longitude = new BigDecimal(-122.435);
+		List<FoodTruck> list = new ArrayList<>();
 		
 		//when
-		when(service.findAllCloseToMe(latitude, longtitude)).thenReturn(list);
-		ResponseEntity<List<FoodTruck>> response = controller.findAllCloseToMe(latitude, longtitude);
+		when(service.findAllCloseToMe(latitude, longitude)).thenReturn(list);
+		ResponseEntity<List<FoodTruck>> response = controller.findAllCloseToMe(latitude, longitude);
 		List<FoodTruck> foodTrucks = response.getBody();
 		
 		// then
@@ -204,7 +204,7 @@ public class FoodTrucksControllerUnitTest {
 		assertThat(response.hasBody());
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(foodTrucks).isEmpty();
-		verify(service).findAllCloseToMe(latitude, longtitude);
+		verify(service).findAllCloseToMe(latitude, longitude);
 	}
 	
 	@ParameterizedTest
@@ -212,19 +212,19 @@ public class FoodTrucksControllerUnitTest {
 		"null, 122, Latitude must not be null",
 		"-95, 122, Latitude must be between -90 and 90 inclusive",
 		"96, 122, Latitude must be between -90 and 90 inclusive",
-		"37, null, Longtitude must not be null",
-		"37, -182, Longtitude must be between -180 and 180 inclusive",
-		"37, 187, Longtitude must be between -180 and 180 inclusive"
+		"37, null, Longitude must not be null",
+		"37, -182, Longitude must be between -180 and 180 inclusive",
+		"37, 187, Longitude must be between -180 and 180 inclusive"
 	}, nullValues = "null")
-	void findAllCloseToMe_shouldThrowException(BigDecimal latitude, BigDecimal longtitude, String message) {
+	void findAllCloseToMe_shouldThrowException(BigDecimal latitude, BigDecimal longitude, String message) {
 		// when
-		doThrow(new IllegalArgumentException(message)).when(service).findAllCloseToMe(latitude, longtitude);
+		doThrow(new IllegalArgumentException(message)).when(service).findAllCloseToMe(latitude, longitude);
 		
 		// then
-		assertThatThrownBy(() -> controller.findAllCloseToMe(latitude, longtitude))
+		assertThatThrownBy(() -> controller.findAllCloseToMe(latitude, longitude))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage(message);
 		
-		verify(service).findAllCloseToMe(latitude, longtitude);
+		verify(service).findAllCloseToMe(latitude, longitude);
 	}
 }

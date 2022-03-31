@@ -17,7 +17,7 @@ import com.typeqast.foodtrucks.service.FoodTrucksService;
 @RequestMapping("/api/v1/food-trucks")
 public class FoodTrucksController {
 	
-	private FoodTrucksService service;
+	private final FoodTrucksService service;
 	
 	public FoodTrucksController(FoodTrucksService service) {
 		this.service = service;
@@ -35,8 +35,8 @@ public class FoodTrucksController {
 	
 	@GetMapping("/close-to-me")
 	public ResponseEntity<List<FoodTruck>> findAllCloseToMe(
-			@RequestParam(value = "latitude", required = true) BigDecimal latitude,
-			@RequestParam(value = "longtitude", required = true) BigDecimal longtitude) {
-		return ResponseEntity.ok(service.findAllCloseToMe(latitude, longtitude));
+			@RequestParam(value = "latitude") BigDecimal latitude,
+			@RequestParam(value = "longitude") BigDecimal longitude) {
+		return ResponseEntity.ok(service.findAllCloseToMe(latitude, longitude));
 	}
 }

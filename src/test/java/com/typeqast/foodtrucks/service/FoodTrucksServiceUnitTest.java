@@ -125,8 +125,8 @@ public class FoodTrucksServiceUnitTest {
 	void findAllCloseToMe_shouldReturnFoodTrucksCloseToMe() {
 		//given
 		BigDecimal latitude = new BigDecimal(37.785);
-		BigDecimal longtitude = new BigDecimal(-122.435);
-		List<FoodTruck> list = new ArrayList<FoodTruck>();
+		BigDecimal longitude = new BigDecimal(-122.435);
+		List<FoodTruck> list = new ArrayList<>();
 		list.add(new FoodTruck(1L, 
 				"San Pancho's Tacos", 
 				"Truck", 
@@ -152,7 +152,7 @@ public class FoodTrucksServiceUnitTest {
 		
 		// when
 		when(repository.findAll()).thenReturn(list);
-		List<FoodTruck> foodTrucks = service.findAllCloseToMe(latitude, longtitude);
+		List<FoodTruck> foodTrucks = service.findAllCloseToMe(latitude, longitude);
 		
 		// then
 		assertThat(foodTrucks).isNotEmpty();
@@ -164,12 +164,12 @@ public class FoodTrucksServiceUnitTest {
 	void findAllCloseToMe_shouldReturnEmptyList() {
 		//given
 		BigDecimal latitude = new BigDecimal(40.785);
-		BigDecimal longtitude = new BigDecimal(-122.435);
-		List<FoodTruck> list = new ArrayList<FoodTruck>();
+		BigDecimal longitude = new BigDecimal(-122.435);
+		List<FoodTruck> list = new ArrayList<>();
 		
 		// when
 		when(repository.findAll()).thenReturn(list);
-		List<FoodTruck> foodTrucks = service.findAllCloseToMe(latitude, longtitude);
+		List<FoodTruck> foodTrucks = service.findAllCloseToMe(latitude, longitude);
 		
 		// then
 		assertThat(foodTrucks).isEmpty();
@@ -181,13 +181,13 @@ public class FoodTrucksServiceUnitTest {
 		"null, 122, Latitude must not be null",
 		"-95, 122, Latitude must be between -90 and 90 inclusive",
 		"96, 122, Latitude must be between -90 and 90 inclusive",
-		"37, null, Longtitude must not be null",
-		"37, -182, Longtitude must be between -180 and 180 inclusive",
-		"37, 187, Longtitude must be between -180 and 180 inclusive"
+		"37, null, Longitude must not be null",
+		"37, -182, Longitude must be between -180 and 180 inclusive",
+		"37, 187, Longitude must be between -180 and 180 inclusive"
 	}, nullValues = "null")
-	void findAllCloseToMe_shouldThrowException(BigDecimal latitude, BigDecimal longtitude, String message) {
+	void findAllCloseToMe_shouldThrowException(BigDecimal latitude, BigDecimal longitude, String message) {
 		Exception e = assertThrows(IllegalArgumentException.class,
-				() -> service.findAllCloseToMe(latitude, longtitude));
+				() -> service.findAllCloseToMe(latitude, longitude));
 		
 		assertEquals(message, e.getMessage());
 	}

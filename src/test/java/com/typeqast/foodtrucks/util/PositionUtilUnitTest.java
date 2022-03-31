@@ -32,10 +32,10 @@ public class PositionUtilUnitTest {
 		"-80.043, -80.045, LATITUDE, true",
 		"-80.043, -80.040, LATITUDE, false",
 		"-80.043, -80.046, LATITUDE, false",
-		"120.508, 120.512, LONGTITUDE, true",
-		"120.508, 120.504, LONGTITUDE, true",
-		"120.508, 120.513, LONGTITUDE, false",
-		"120.508, 120.503, LONGTITUDE, false",
+		"120.508, 120.512, LONGITUDE, true",
+		"120.508, 120.504, LONGITUDE, true",
+		"120.508, 120.513, LONGITUDE, false",
+		"120.508, 120.503, LONGITUDE, false",
 	})
 	void isPositionCloseToMeTest(BigDecimal position, String foodTruckPosition, 
 			Coordinates coordinates, boolean flag) {

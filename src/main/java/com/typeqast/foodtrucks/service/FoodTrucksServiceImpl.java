@@ -34,15 +34,15 @@ public class FoodTrucksServiceImpl implements FoodTrucksService {
 	}
 
 	@Override
-	public List<FoodTruck> findAllCloseToMe(BigDecimal latitude, BigDecimal longtitude) {
+	public List<FoodTruck> findAllCloseToMe(BigDecimal latitude, BigDecimal longitude) {
 		Assert.notNull(latitude, "Latitude must not be null");
 		Assert.isTrue(PositionUtil.positionIsValid(latitude, 90), "Latitude must be between -90 and 90 inclusive");
-		Assert.notNull(longtitude, "Longtitude must not be null");
-		Assert.isTrue(PositionUtil.positionIsValid(longtitude, 180), "Longtitude must be between -180 and 180 inclusive");
+		Assert.notNull(longitude, "Longitude must not be null");
+		Assert.isTrue(PositionUtil.positionIsValid(longitude, 180), "Longitude must be between -180 and 180 inclusive");
 		
 		return repository.findAll().stream()
 				.filter(foodTruck -> PositionUtil.isPositionCloseToMe(latitude, foodTruck.getLatitude(), Coordinates.LATITUDE))
-				.filter(foodTruck -> PositionUtil.isPositionCloseToMe(longtitude, foodTruck.getLongtitude(), Coordinates.LONGTITUDE))
+				.filter(foodTruck -> PositionUtil.isPositionCloseToMe(longitude, foodTruck.getLongitude(), Coordinates.LONGITUDE))
 				.toList();
 	}
 

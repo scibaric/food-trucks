@@ -13,8 +13,8 @@ In future DTOs and mappers could be introduced but for now there is no need beca
 complexity. Food Truck entity is serialized to JSON as-is.
 
 Endpoint `close-to-me` requires user coordinates and then calculates and finds closest food trucks.
-Approximately distance of one block in latitude would be ±0.002 and in longtitude ±0.004.
-Some sofisticated math function could be better but this is good enough.
+Approximately distance of one block in latitude would be ±0.002 and in longitude ±0.004.
+Some sophisticated math function could be better but this is good enough.
 
 ## Test, build and run
 Maven automation tool is used for testing the API and building .jar file.
@@ -45,7 +45,7 @@ and port 8080, testing URLs are:
         "x": 6012504.31,
         "y": 2114926.77,
         "latitude": "37.78788969990609",
-        "longtitude": "-122.40053532677749",
+        "longitude": "-122.40053532677749",
         "schedule": "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=12MFF-0083&ExportPDF=1&Filename=12MFF-0083_schedule.pdf",
         "daysHours": "Mo-Su:7AM-6PM",
         "received": "20120403",
@@ -71,7 +71,7 @@ and port 8080, testing URLs are:
         "x": 6011371.49,
         "y": 2093947.37,
         "latitude": "37.73022168130492",
-        "longtitude": "-122.40297852668597",
+        "longitude": "-122.40297852668597",
         "schedule": "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=13MFF-0112&ExportPDF=1&Filename=13MFF-0112_schedule.pdf",
         "daysHours": "Mo-Su:10AM-9PM",
         "noiSent": "07/25/2013 12:00:00 AM",
@@ -109,7 +109,7 @@ and port 8080, testing URLs are:
     "x": 6004575.87,
     "y": 2105666.97,
     "latitude": "37.76201920035647",
-    "longtitude": "-122.42730642251331",
+    "longitude": "-122.42730642251331",
     "schedule": "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=21MFF-00015&ExportPDF=1&Filename=21MFF-00015_schedule.pdf",
     "approved": "01/28/2022 12:00:00 AM",
     "received": "20210315",
@@ -124,7 +124,7 @@ and port 8080, testing URLs are:
   }
   ```
   
-  - http://localhost:8080/api/v1/food-trucks/close-to-me?latitude=37.791&longtitude=-122.401 - Returns all
+  - http://localhost:8080/api/v1/food-trucks/close-to-me?latitude=37.791&longitude=-122.401 - Returns all
   food trucks close to coordinates which are provided by user.
   
   ```
@@ -144,7 +144,7 @@ and port 8080, testing URLs are:
         "x": 6013552.57,
         "y": 2116844.50,
         "latitude": "37.793213731663414",
-        "longtitude": "-122.39704303671823",
+        "longitude": "-122.39704303671823",
         "schedule": "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=15MFF-0159&ExportPDF=1&Filename=15MFF-0159_schedule.pdf",
         "received": "20151231",
         "priorPermit": false,
@@ -172,7 +172,7 @@ and port 8080, testing URLs are:
         "x": 6011162.14,
         "y": 2115691.27,
         "latitude": "37.78991386713444",
-        "longtitude": "-122.40523289252366",
+        "longitude": "-122.40523289252366",
         "schedule": "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=16MFF-0126&ExportPDF=1&Filename=16MFF-0126_schedule.pdf",
         "received": "20160531",
         "priorPermit": false,

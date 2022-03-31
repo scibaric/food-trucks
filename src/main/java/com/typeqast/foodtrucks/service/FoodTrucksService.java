@@ -12,6 +12,6 @@ public interface FoodTrucksService {
 	
 	List<FoodTruck> findAll();
 	
-	List<FoodTruck> findAllCloseToMe(BigDecimal latitude, BigDecimal longtitude);
+	List<FoodTruck> findAllCloseToMe(BigDecimal latitude, BigDecimal longitude);
 
 }

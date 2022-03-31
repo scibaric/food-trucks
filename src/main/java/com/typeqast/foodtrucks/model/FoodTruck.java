@@ -61,8 +61,8 @@ public class FoodTruck {
 	@Column(name = "LATITUDE")
 	private String latitude;
 	
-	@Column(name = "LONGTITUDE")
-	private String longtitude;
+	@Column(name = "LONGITUDE")
+	private String longitude;
 	
 	@Column(name = "SCHEDULE")
 	private String schedule;
@@ -114,11 +114,11 @@ public class FoodTruck {
 	}
 	
 	public FoodTruck(Long locationId, String applicant, String facilityType, String status, String foodItems,
-			String latitude, String longtitude) {
+			String latitude, String longitude) {
 		
 		this(locationId, applicant, facilityType, status, foodItems);
 		this.latitude = latitude;
-		this.longtitude = longtitude;
+		this.longitude = longitude;
 	}
 
 	public Long getLocationId() {
@@ -241,12 +241,12 @@ public class FoodTruck {
 		this.latitude = latitude;
 	}
 
-	public String getLongtitude() {
-		return longtitude;
+	public String getLongitude() {
+		return longitude;
 	}
 
-	public void setLongtitude(String longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
 	public String getSchedule() {
@@ -356,7 +356,7 @@ public class FoodTruck {
 	@Override
 	public int hashCode() {
 		return Objects.hash(address, applicant, approved, block, blockLot, cnn, daysHours, expirationDate, facilityType,
-				firePreventionDistricts, foodItems, latitude, location, locationDescription, locationId, longtitude,
+				firePreventionDistricts, foodItems, latitude, location, locationDescription, locationId, longitude,
 				lot, neighborhoodsOld, noiSent, permit, policeDistricts, priorPermit, received, schedule, status,
 				supervisorDistricts, x, y, zipCodes);
 	}
@@ -379,7 +379,7 @@ public class FoodTruck {
 				&& Objects.equals(foodItems, other.foodItems) && Objects.equals(latitude, other.latitude)
 				&& Objects.equals(location, other.location)
 				&& Objects.equals(locationDescription, other.locationDescription)
-				&& Objects.equals(locationId, other.locationId) && Objects.equals(longtitude, other.longtitude)
+				&& Objects.equals(locationId, other.locationId) && Objects.equals(longitude, other.longitude)
 				&& Objects.equals(lot, other.lot) && Objects.equals(neighborhoodsOld, other.neighborhoodsOld)
 				&& Objects.equals(noiSent, other.noiSent) && Objects.equals(permit, other.permit)
 				&& Objects.equals(policeDistricts, other.policeDistricts)

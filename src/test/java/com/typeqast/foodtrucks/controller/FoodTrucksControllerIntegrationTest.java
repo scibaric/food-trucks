@@ -54,7 +54,7 @@ public class FoodTrucksControllerIntegrationTest {
 	void findAllCloseToMe_shouldReturnAllFoodTrucksCloseToMe() throws Exception {
 		mockMvc.perform(get("/api/v1/food-trucks/close-to-me")
 				.param("latitude", "37.792")
-				.param("longtitude", "-122.401"))
+				.param("longitude", "-122.401"))
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.*").isArray())
@@ -65,7 +65,7 @@ public class FoodTrucksControllerIntegrationTest {
 	void findAllCloseToMe_shouldReturnEmptyList() throws Exception {
 		mockMvc.perform(get("/api/v1/food-trucks/close-to-me")
 				.param("latitude", "40.785")
-				.param("longtitude", "-122.401"))
+				.param("longitude", "-122.401"))
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.*").isEmpty());
@@ -75,13 +75,13 @@ public class FoodTrucksControllerIntegrationTest {
 	@CsvSource({
 		"-95, 122, Latitude must be between -90 and 90 inclusive",
 		"96, 122, Latitude must be between -90 and 90 inclusive",
-		"37, -182, Longtitude must be between -180 and 180 inclusive",
-		"37, 187, Longtitude must be between -180 and 180 inclusive"
+		"37, -182, Longitude must be between -180 and 180 inclusive",
+		"37, 187, Longitude must be between -180 and 180 inclusive"
 	})
-	void findAllCloseToMe_shouldReturnErrorMessages(BigDecimal latitude, BigDecimal longtitude, String message) throws Exception {
+	void findAllCloseToMe_shouldReturnErrorMessages(BigDecimal latitude, BigDecimal longitude, String message) throws Exception {
 		mockMvc.perform(get("/api/v1/food-trucks/close-to-me")
 				.param("latitude", latitude.toString())
-				.param("longtitude", longtitude.toString()))
+				.param("longitude", longitude.toString()))
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isBadRequest())
 			.andExpect(jsonPath("$.message").value(message));
@@ -96,9 +96,9 @@ public class FoodTrucksControllerIntegrationTest {
 	}
 	
 	@Test
-	void findAllCloseToMe_whenLongtitudeIsMissing_shouldReturnErrorMessage() throws Exception {
+	void findAllCloseToMe_whenLongitudeIsMissing_shouldReturnErrorMessage() throws Exception {
 		mockMvc.perform(get("/api/v1/food-trucks/close-to-me")
-				.param("longtitude", "-122.401"))
+				.param("longitude", "-122.401"))
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isBadRequest());
 	}
