@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.typeqast.foodtrucks.enums.Coordinates;
 import com.typeqast.foodtrucks.exception.FoodTruckNotFoundException;
 import com.typeqast.foodtrucks.model.FoodTruck;
 import com.typeqast.foodtrucks.repository.FoodTrucksRepository;
@@ -30,7 +29,7 @@ public class FoodTrucksServiceImpl implements FoodTrucksService {
 	public FoodTruck findByLocationId(Long id) {
 		Assert.notNull(id, "LocationId must not be null");
 		return repository.findById(id).orElseThrow(
-				() -> new FoodTruckNotFoundException(String.format("Food truck with id %s not found", id)));
+				() -> new FoodTruckNotFoundException("Food truck with id %s not found".formatted(id)));
 	}
 
 	@Override
@@ -40,10 +39,7 @@ public class FoodTrucksServiceImpl implements FoodTrucksService {
 		Assert.notNull(longitude, "Longitude must not be null");
 		Assert.isTrue(PositionUtil.positionIsValid(longitude, 180), "Longitude must be between -180 and 180 inclusive");
 		
-		return repository.findAll().stream()
-				.filter(foodTruck -> PositionUtil.isPositionCloseToMe(latitude, foodTruck.getLatitude(), Coordinates.LATITUDE))
-				.filter(foodTruck -> PositionUtil.isPositionCloseToMe(longitude, foodTruck.getLongitude(), Coordinates.LONGITUDE))
-				.toList();
+		return repository.findAllCloseToMe(latitude, longitude);
 	}
 
 }

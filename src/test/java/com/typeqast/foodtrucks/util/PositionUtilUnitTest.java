@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import com.typeqast.foodtrucks.enums.Coordinates;
-
 public class PositionUtilUnitTest {
 	
 	@ParameterizedTest
@@ -24,23 +22,5 @@ public class PositionUtilUnitTest {
 	})
 	void positionIsValidTest(BigDecimal position, int pos, boolean flag) {
 		assertThat(PositionUtil.positionIsValid(position, pos)).isEqualTo(flag);
-	}
-	
-	@ParameterizedTest
-	@CsvSource({
-		"-80.043, -80.041, LATITUDE, true",
-		"-80.043, -80.045, LATITUDE, true",
-		"-80.043, -80.040, LATITUDE, false",
-		"-80.043, -80.046, LATITUDE, false",
-		"120.508, 120.512, LONGITUDE, true",
-		"120.508, 120.504, LONGITUDE, true",
-		"120.508, 120.513, LONGITUDE, false",
-		"120.508, 120.503, LONGITUDE, false",
-	})
-	void isPositionCloseToMeTest(BigDecimal position, String foodTruckPosition, 
-			Coordinates coordinates, boolean flag) {
-		
-		assertThat(PositionUtil.isPositionCloseToMe(position, foodTruckPosition, coordinates))
-			.isEqualTo(flag);
 	}
 }

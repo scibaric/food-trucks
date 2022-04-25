@@ -2,6 +2,7 @@ package com.typeqast.foodtrucks.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -37,9 +38,35 @@ public class FoodTrucksRepositoryUnitTest {
 	@Test
 	void findByLocationId_shouldNotReturnFoodTruck() {
 		// given
-		FoodTruck foodTrucks = repository.findById(1L).orElse(null);
+		FoodTruck foodTruck = repository.findById(1L).orElse(null);
 		
 		// then
-		assertThat(foodTrucks).isNull();
+		assertThat(foodTruck).isNull();
+	}
+
+	@Test
+	void findAllCloseToMe_shouldReturnListOfFoodTrucks() {
+		// given
+		List<FoodTruck> foodTrucks = repository.findAllCloseToMe(
+				new BigDecimal("37.791"),
+				new BigDecimal("-122.401"));
+
+		// then
+		assertThat(foodTrucks)
+				.isNotNull()
+				.isNotEmpty();
+	}
+
+	@Test
+	void findAllCloseToMe_shouldReturnEmptyList() {
+		// given
+		List<FoodTruck> foodTrucks = repository.findAllCloseToMe(
+				new BigDecimal("-37.791"),
+				new BigDecimal("-100.401"));
+
+		// then
+		assertThat(foodTrucks)
+				.isNotNull()
+				.isEmpty();
 	}
 }

@@ -151,13 +151,13 @@ public class FoodTrucksServiceUnitTest {
 				"-122.431"));
 		
 		// when
-		when(repository.findAll()).thenReturn(list);
+		when(repository.findAllCloseToMe(latitude, longitude)).thenReturn(list);
 		List<FoodTruck> foodTrucks = service.findAllCloseToMe(latitude, longitude);
 		
 		// then
 		assertThat(foodTrucks).isNotEmpty();
 		assertThat(foodTrucks.size()).isEqualTo(3);
-		verify(repository).findAll();
+		verify(repository).findAllCloseToMe(latitude, longitude);
 	}
 	
 	@Test
@@ -168,12 +168,12 @@ public class FoodTrucksServiceUnitTest {
 		List<FoodTruck> list = new ArrayList<>();
 		
 		// when
-		when(repository.findAll()).thenReturn(list);
+		when(repository.findAllCloseToMe(latitude, longitude)).thenReturn(list);
 		List<FoodTruck> foodTrucks = service.findAllCloseToMe(latitude, longitude);
 		
 		// then
 		assertThat(foodTrucks).isEmpty();
-		verify(repository).findAll();
+		verify(repository).findAllCloseToMe(latitude, longitude);
 	}
 	
 	@ParameterizedTest
